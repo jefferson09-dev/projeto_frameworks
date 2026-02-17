@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+</head>
+<body>
+    
+    <div class="dropdown is-active">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+      <span>Dropdown button</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <a href="#" class="dropdown-item"> Dropdown item </a>
+      <a class="dropdown-item"> Other dropdown item </a>
+      <a href="#" class="dropdown-item is-active"> Active dropdown item </a>
+      <a href="#" class="dropdown-item"> Other dropdown item </a>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item"> With a divider </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
