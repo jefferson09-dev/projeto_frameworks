@@ -49,7 +49,11 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // $client = \App\Models\Client::findOrFail($id);
+        // return view('clients.edit', compact('client'));
+
+        $client = Client::findOrFail($id);
+        return view('clients.edit', compact('client'));
     }
 
     /**
@@ -57,7 +61,13 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // $client = \App\Models\Client::findOrFail($id);
+        // $client->update($request->all());
+
+        $client = Client::findOrFail($id);
+        $client->update($request->all());
+
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -65,6 +75,12 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // $client = \App\Models\Client::findOrFail($id);
+        // $client->delete();
+
+        $client = Client::findOrFail($id);
+        $client->delete();
+
+        return redirect()->route('clients.index');
     }
 }

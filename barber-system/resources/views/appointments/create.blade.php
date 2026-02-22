@@ -6,7 +6,7 @@
     <div class="col-md-6">
 
         <div class="card shadow">
-            <div class="card-header bg-dark text-white">
+            <div class="card-header bg-success text-white">
                 <h4 class="mb-0">Novo Agendamento</h4>
             </div>
 
@@ -27,23 +27,29 @@
                     </div>
 
                     <div class="mb-3">
-                        <label>Data</label>
+                        <label class="form-label">Data</label>
                         <input type="date" name="date" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label>Hora</label>
+                        <label class="form-label">Hora</label>
                         <input type="time" name="time" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label>Serviço</label>
+                        <label class="form-label">Serviço</label>
                         <input type="text" name="service" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-success">
-                        Agendar
-                    </button>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('appointments.index') }}" class="btn btn-secondary">
+                            Voltar
+                        </a>
+
+                        <button type="submit" class="btn btn-success">
+                            Agendar
+                        </button>
+                    </div>
 
                 </form>
 
