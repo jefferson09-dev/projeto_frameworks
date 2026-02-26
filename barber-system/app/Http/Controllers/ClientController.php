@@ -23,7 +23,9 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('clients.create');
+        $clients = \App\Models\Client::all();
+
+        return view('appointments.create', compact('clients'));
     }
 
     /**
@@ -31,9 +33,12 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        Client::create($request->all());
+        Client::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+        ]);
 
-        return redirect()->route('clients.index');
+        return redirect()->route('appointments.create');
     }
 
     /**

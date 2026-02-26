@@ -22,8 +22,15 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        $clients = Client::all();  // 👈 BUSCA CLIENTES
-        return view('appointments.create', compact('clients')); // 👈 ENVIA PARA VIEW
+        // $clients = Client::all();  // 👈 BUSCA CLIENTES
+        // return view('appointments.create', compact('clients')); // 👈 ENVIA PARA VIEW
+
+        $clients = \App\Models\Client::all();
+
+        return view('appointments.create', [
+        'clients' => $clients
+    ]);
+
     }
 
     /**
@@ -31,8 +38,21 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        Appointment::create($request->all());
-        return redirect()->route('appointments.index')->with('success', 'Appointment created successfully.');
+            $request->validate([
+        'name' => 'required|string|max:255',
+        'phone' => 'required|string|max:20',
+        ], [
+            'name.required' => 'O nome é obrigatório.',
+            'phone.required' => 'O telefone é obrigatório.',
+        ]);
+
+        Client::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+        ]);
+
+        return redirect()->route('appointments.create')
+            ->with('success', 'Cliente cadastrado com sucesso!');
     }
 
     /**

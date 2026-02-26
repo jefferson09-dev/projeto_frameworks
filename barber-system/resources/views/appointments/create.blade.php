@@ -17,13 +17,37 @@
 
                     <div class="mb-3">
                         <label class="form-label">Cliente</label>
-                        <select name="client_id" class="form-control">
-                            @foreach($clients as $client)
-                                <option value="{{ $client->id }}">
-                                    {{ $client->name }}
-                                </option>
-                            @endforeach
-                        </select>
+
+                        @if($clients->isEmpty())
+                            <div class="alert alert-warning d-flex justify-content-between align-items-center">
+                                <span>Nenhum cliente cadastrado.</span>
+
+                                <button type="button"
+                                        class="btn btn-sm btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalCliente">
+                                    + Cadastrar Cliente
+                                </button>
+                            </div>
+                        @else
+                            <select name="client_id" class="form-control" required>
+                                <option value="">Selecione um cliente</option>
+                                @foreach($clients as $client)
+                                    <option value="{{ $client->id }}">
+                                        {{ $client->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            <div class="mb-2">
+                                <button type="button"
+                                        class="btn btn-sm btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalCliente">
+                                    + Cadastrar Cliente
+                                </button>
+                            </div>
+                        @endif
                     </div>
 
                     <div class="mb-3">
@@ -56,6 +80,70 @@
             </div>
         </div>
 
+    </div>
+</div>
+
+<!-- Modal Cliente -->
+<div class="modal fade" id="modalCliente" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Novo Cliente</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form action="{{ route('clients.store') }}" method="POST">
+                    @csrf
+
+                    {{-- <div class="mb-3">
+                        <label class="form-label">Nome do Cliente</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div> --}}
+                    <div class="mb-3">
+                        <label class="form-label">Nome do Cliente</label>
+
+                        <input type="text"
+                            name="name"
+                            class="form-control @error('name') is-invalid @enderror"
+                            value="{{ old('name') }}"
+                            required>
+
+                        @error('name')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    {{-- <div class="mb-3">
+                        <label class="form-label">Telefone</label>
+                        <input type="text" name="phone" class="form-control" required>
+                    </div> --}}
+                    <div class="mb-3">
+                        <label class="form-label">Telefone</label>
+
+                            <input type="text"
+                            name="phone"
+                            class="form-control @error('phone') is-invalid @enderror"
+                            value="{{ old('phone') }}"
+                            required>
+
+                            @error('phone')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100">
+                        Salvar Cliente
+                    </button>
+                </form>
+            </div>
+
+        </div>
     </div>
 </div>
 

@@ -6,26 +6,18 @@
     <div class="col-md-6">
 
         <div class="card shadow">
-            <div class="card-header bg-dark text-white">
+            {{-- <div class="card-header bg-dark text-white">
                 <h4 class="mb-0">Novo Agendamento</h4>
+            </div> --}}
+            <div class="bg-white shadow-lg rounded-2xl p-6">
+                Novo Agendamento
             </div>
 
             <div class="card-body">
 
                 <form action="{{ route('appointments.store') }}" method="POST">
-                    @csrf
-
-                    <div class="mb-3">
-                        <label class="form-label">Cliente</label>
-                        <select name="client_id" class="form-control">
-                            @foreach($clients as $client)
-                                <option value="{{ $client->id }}">
-                                    {{ $client->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
+                    @csrf     
+                    
                     <div class="mb-3">
                         <label>Data</label>
                         <input type="date" name="date" class="form-control">
@@ -41,7 +33,10 @@
                         <input type="text" name="service" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-success">
+                    {{-- <button type="submit" class="btn btn-success">
+                        Agendar
+                    </button> --}}
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl transition">
                         Agendar
                     </button>
 
