@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Appointment;
 
 class ClientController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource.   
      */
     public function index()
     {
@@ -23,8 +24,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        $clients = \App\Models\Client::all();
-
+        $clients = Client::all();
         return view('appointments.create', compact('clients'));
     }
 
@@ -52,13 +52,10 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Appointment $appointment)
     {
-        // $client = \App\Models\Client::findOrFail($id);
-        // return view('clients.edit', compact('client'));
-
-        $client = Client::findOrFail($id);
-        return view('clients.edit', compact('client'));
+        $clients = Client::all();
+        return view('appointments.edit', compact('appointment', 'clients'));
     }
 
     /**

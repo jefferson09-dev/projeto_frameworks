@@ -11,6 +11,7 @@ class Appointment extends Model
     'date',
     'time',
     'service',
+    'status',
     ];
 
     public function client()

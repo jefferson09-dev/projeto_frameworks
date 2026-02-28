@@ -25,8 +25,10 @@
                     <th>Data</th>
                     <th>Hora</th>
                     <th>Serviço</th>
+                    <th>Status</th> {{-- ADICIONA AQUI --}}
                 </tr>
             </thead>
+
             <tbody>
                 @foreach($appointments as $appointment)
                 <tr>
@@ -34,6 +36,16 @@
                     <td>{{ $appointment->date }}</td>
                     <td>{{ $appointment->time }}</td>
                     <td>{{ $appointment->service }}</td>
+
+                    <td>
+                        @if($appointment->status == 'Pendente')
+                            <span class="badge bg-warning text-dark">Pendente</span>
+                        @elseif($appointment->status == 'Confirmado')
+                            <span class="badge bg-success">Confirmado</span>
+                        @else
+                            <span class="badge bg-danger">Cancelado</span>
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

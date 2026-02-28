@@ -6,13 +6,16 @@
     <div class="col-md-6">
         <div class="card shadow">
             <div class="card-header bg-dark text-white">
-                Novo Agendamento
+                Editar Agendamento
             </div>
 
             <div class="card-body">
-                <form action="{{ route('appointments.store') }}" method="POST">
+                <form action="{{ route('appointments.update', $appointment->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
+
                     @include('appointments._form')
+
                 </form>
             </div>
         </div>
