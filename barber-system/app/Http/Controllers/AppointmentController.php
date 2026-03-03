@@ -17,7 +17,9 @@ class AppointmentController extends Controller
     public function create()
     {
         $clients = Client::all();
-        return view('appointments.create', compact('clients'));
+        $appointment = new Appointment(); // 👈 ADICIONE ISSO
+
+        return view('appointments.create', compact('clients', 'appointment'));
     }
 
     public function store(Request $request)

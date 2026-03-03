@@ -46,6 +46,13 @@
                             <span class="badge bg-danger">Cancelado</span>
                         @endif
                     </td>
+                    <td>
+                        <a href="{{ route('appointments.edit', $appointment->id) }}"
+                        class="btn btn-primary btn-sm">
+                             Editar
+                         </a>
+                    </td>
+
                 </tr>
                 @endforeach
             </tbody>

@@ -29,9 +29,9 @@
                     <td>{{ $client->phone }}</td>
                     <td>{{ $client->email }}</td>
                     <td>
-                        <a href="{{ route('clients.edit', $client) }}" 
-                           class="btn btn-sm btn-primary">
-                           Editar
+                        <a href="{{ route('clients.edit', $client->id) }}" 
+                        class="btn btn-primary btn-sm">
+                            Editar
                         </a>
 
                         <form action="{{ route('clients.destroy', $client) }}" 

@@ -52,10 +52,9 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Appointment $appointment)
+    public function edit(Client $client)
     {
-        $clients = Client::all();
-        return view('appointments.edit', compact('appointment', 'clients'));
+        return view('clients.edit', compact('client'));
     }
 
     /**
@@ -77,9 +76,7 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        // $client = \App\Models\Client::findOrFail($id);
-        // $client->delete();
-
+        
         $client = Client::findOrFail($id);
         $client->delete();
 
