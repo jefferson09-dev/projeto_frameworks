@@ -26,6 +26,7 @@
                     <th>Hora</th>
                     <th>Serviço</th>
                     <th>Status</th> {{-- ADICIONA AQUI --}}
+                    <th>Ações</th>
                 </tr>
             </thead>
 

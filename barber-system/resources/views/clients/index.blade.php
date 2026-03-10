@@ -14,7 +14,6 @@
         <table class="table table-striped mb-0">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Email</th>
@@ -24,7 +23,6 @@
             <tbody>
                 @foreach($clients as $client)
                 <tr>
-                    <td>{{ $client->id }}</td>
                     <td class="fw-semibold">{{ $client->name }}</td>
                     <td>{{ $client->phone }}</td>
                     <td>{{ $client->email }}</td>
@@ -51,6 +49,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mt-3">
+    {{ $clients->links() }}
+</div>
     </div>
 </div>
 

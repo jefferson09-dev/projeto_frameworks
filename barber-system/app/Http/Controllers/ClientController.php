@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Client;
-use App\Models\Appointment;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -14,8 +14,7 @@ class ClientController extends Controller
     public function index()
     {
         // return view('clients.index');
-        $clients = \App\Models\Client::all();
-
+        $clients = Client::paginate();
         return view('clients.index', compact('clients'));
     }
 
@@ -25,7 +24,7 @@ class ClientController extends Controller
     public function create()
     {
         $clients = Client::all();
-        return view('appointments.create', compact('clients'));
+        return view('clients.create', compact('clients'));
     }
 
     /**
@@ -33,12 +32,13 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+
         Client::create([
             'name' => $request->name,
             'phone' => $request->phone,
         ]);
 
-        return redirect()->route('appointments.create');
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -60,14 +60,10 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Client $client)
     {
-        // $client = \App\Models\Client::findOrFail($id);
-        // $client->update($request->all());
-
-        $client = Client::findOrFail($id);
+      
         $client->update($request->all());
-
         return redirect()->route('clients.index');
     }
 

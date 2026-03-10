@@ -7,53 +7,27 @@
 
         <div class="card shadow">
             <div class="card-header bg-dark text-white">
-                <h5 class="mb-0">Novo Agendamento</h5>
+                <h5 class="mb-0">Novo Cliente</h5>
             </div>
 
             <div class="card-body">
 
-                <form action="{{ route('appointments.update', $appointment->id) }}" method="POST">
+                <form action="{{ route('clients.store') }}" method="POST">
                     @csrf
-                    @method('PUT')    
-                    
+                    @method('POST')
+
                     <div class="mb-3">
-                        <label class="form-label">Data</label>
-                        <input type="date" name="date" class="form-control">
+                        <label class="form-label">Nome</label>
+                        <input type="text" name="name" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Hora</label>
-                        <input type="time" name="time" class="form-control">
+                        <label class="form-label">Telefone</label>
+                        <input type="tel" name="phone" class="form-control" pattern="[0-9]+" required>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Serviço</label>
-                        <input type="text" name="service" class="form-control">
-                    </div>
-
-                    {{-- <div class="mb-3">
-                        <label class="form-label">Status</label>
-                        <select name="status" class="form-select">
-                            <option value="Pendente">Pendente</option>
-                            <option value="Confirmado">Confirmado</option>
-                            <option value="Cancelado">Cancelado</option>
-                        </select>
-                    </div> --}}
-
-                    <select name="status" class="form-select">
-                        <option value="Pendente" {{ old('status') == 'Pendente' ? 'selected' : '' }}>
-                            Pendente
-                        </option>
-                        <option value="Confirmado" {{ old('status') == 'Confirmado' ? 'selected' : '' }}>
-                            Confirmado
-                        </option>
-                        <option value="Cancelado" {{ old('status') == 'Cancelado' ? 'selected' : '' }}>
-                            Cancelado
-                        </option>
-                    </select>
 
                     <button type="submit" class="btn btn-success w-100">
-                        Agendar
+                        Cadastrar
                     </button>
 
                 </form>
