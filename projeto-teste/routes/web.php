@@ -8,5 +8,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('landing_page', function () {
-    return view("welcome");
+    return view("freelancer.index");
 });
