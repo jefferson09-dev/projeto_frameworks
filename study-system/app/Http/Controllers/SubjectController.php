@@ -2,64 +2,58 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subject;
 use Illuminate\Http\Request;
+use App\Models\Subject;
 
 class SubjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $subjects = Subject::with('studies')->get();
+
+        return view('subjects.index', compact('subjects'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('subjects.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        Subject::create([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect('/subjects');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Subject $subject)
+    public function edit($id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+
+        return view('subjects.edit', compact('subject'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Subject $subject)
+    public function update(Request $request, $id)
     {
-        //
+        $subject = Subject::findOrFail($id);
+
+        $subject->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return redirect('/subjects');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Subject $subject)
+    public function destroy($id)
     {
-        //
-    }
+        $subject = Subject::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Subject $subject)
-    {
-        //
+        $subject->delete();
+
+        return redirect('/subjects');
     }
 }
